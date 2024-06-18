@@ -13,8 +13,12 @@ plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 #alias code="flatpak run com.visualstudio.code"
+
+
+alias tms='session=$(tmux ls | fzf | awk -F: '\''{print $1}'\''); tmux attach -t "$session"'
 alias ll="ls -a"
 alias mk="mkdir"
 alias sinstall="sudo apt install"
