@@ -7,8 +7,12 @@ keymap.set("n", "x", '"_x')
 keymap.set("n", "+", "<C-a>")
 keymap.set("n", "-", "<C-x>")
 
+-- copy line up/below
+keymap.set("x", "<C-j>", "y:pu<CR>", opts) -- Paste below
+keymap.set("x", "<C-k>", "y:pu!<CR>", opts) -- Paste above
+
 -- Select all
-keymap.set("n", "<C-a>", "gg<S-v>G")
+keymap.set("n", "<C-A>", "gg<S-v>G")
 
 -- Save file and quit
 keymap.set("n", "<Leader>w", ":update<Return>", opts)
