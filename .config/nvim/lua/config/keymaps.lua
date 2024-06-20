@@ -7,12 +7,8 @@ keymap.set("n", "x", '"_x')
 keymap.set("n", "+", "<C-a>")
 keymap.set("n", "-", "<C-x>")
 
--- copy line up/below
-keymap.set("x", "<C-j>", "y:pu<CR>", opts) -- Paste below
-keymap.set("x", "<C-k>", "y:pu!<CR>", opts) -- Paste above
-
 -- Select all
-keymap.set("n", "<C-A>", "gg<S-v>G")
+keymap.set("n", "<Leader>a", "gg<S-v>G")
 
 -- Save file and quit
 keymap.set("n", "<Leader>w", ":update<Return>", opts)
@@ -32,7 +28,7 @@ keymap.set("n", "tw", ":tabclose<Return>", opts)
 -- Split window
 keymap.set("n", "ss", ":split<Return>", opts)
 keymap.set("n", "sv", ":vsplit<Return>", opts)
-
+keymap.set("n", "sx", "<cmd>close<CR>", opts)
 -- Move window
 keymap.set("n", "<Leader>sh", "<C-w>h")
 keymap.set("n", "sk", "<C-w>k")
@@ -45,27 +41,23 @@ keymap.set("n", "<C-S-l>", "<C-w>>")
 keymap.set("n", "<C-S-k>", "<C-w>+")
 keymap.set("n", "<C-S-j>", "<C-w>-")
 
--- Diagnostics
-keymap.set("n", "<C-j>", function()
-	vim.diagnostic.goto_next()
-end, opts)
-
 -- Custom keybindings
 keymap.set("i", "jk", "<ESC>", opts)
 keymap.set("n", "<Leader>l", "$", opts)
 keymap.set("n", "<Leader>h", "^", opts)
 keymap.set("n", "<Leader>k", "gg", opts)
 keymap.set("n", "<Leader>j", "G", opts)
+keymap.set("n", "<Leader>v", "v", opts)
 
--- Ctrl+s for save
-keymap.set("n", "<C-s>", ":w<Return>", opts)
-keymap.set("i", "<C-s>", "<ESC>:w<Return>a", opts)
--- Ctrl+q for quit
-keymap.set("n", "<Leader-q>", ":q<Return>", opts)
-keymap.set("i", "<Leader-q>", "<ESC>:q<Return>", opts)
--- Ctrl+w for save and quit
-keymap.set("n", "<C-w>", ":wq<Return>", opts)
-keymap.set("i", "<C-w>", "<ESC>:wq<Return>", opts)
--- Ctrl+Shift+w for quit without saving
-keymap.set("n", "<C-S-w>", ":q!<Return>", opts)
-keymap.set("i", "<C-S-w>", "<ESC>:q!<Return>", opts)
+-- New keybindings for moving selected lines up/down and repeatable until Esc
+keymap.set("x", "<C-k>", ":m '<-2<CR>gv=gv", opts) -- Move selected lines up
+keymap.set("x", "<C-j>", ":m '>+1<CR>gv=gv", opts) -- Move selected lines down
+
+-- Copy selected lines and paste them at the end of the selection line +1 and at the first line of the selection -1
+keymap.set("x", "<C-l>", '"my`>+1<CR>gv:put m<CR>gv', opts) -- Copy to m register and paste below the selection
+keymap.set("x", "<C-h>", '"my`< -1<CR>gv:put m<CR>gv', opts)
+
+-- Navigate diagnostics
+keymap.set("n", "<C-j>", function()
+	vim.diagnostic.goto_next()
+end, opts)

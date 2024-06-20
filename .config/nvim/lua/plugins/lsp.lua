@@ -134,4 +134,74 @@ return {
 			table.insert(opts.sources, { name = "emoji" })
 		end,
 	},
+	{
+		"epwalsh/obsidian.nvim",
+		version = "*",
+		lazy = true,
+		ft = "markdown",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		config = function()
+			require("obsidian").setup({
+				workspaces = {
+					{
+						name = "ZazenCodes",
+						path = "/home/smruti/Documents/document/.obsidian",
+					},
+				},
+				notes_subdir = "inbox",
+				new_notes_location = "notes_subdir",
+
+				disable_frontmatter = true,
+				templates = {
+					subdir = "templates",
+					date_format = "%Y-%m-%d",
+					time_format = "%H:%M:%S",
+				},
+
+				mappings = {
+					["gf"] = {
+						action = function()
+							return require("obsidian").util.gf_passthrough()
+						end,
+						opts = { noremap = false, expr = true, buffer = true },
+					},
+				},
+
+				completion = {
+					nvim_cmp = true,
+					min_chars = 2,
+				},
+
+				ui = {
+					checkboxes = {},
+					bullets = {},
+				},
+			})
+		end,
+	},
+	-- set up and config emmet in nvim
+	{
+		"mattn/emmet-vim",
+		config = function()
+			-- Set the leader key for Emmet
+			vim.g.user_emmet_leader_key = "<C-Z>"
+
+			-- Enable Emmet for HTML, CSS, JavaScript (React), and TypeScript (React) files
+			vim.cmd([[
+      autocmd FileType html,css,javascriptreact,typescriptreact EmmetInstall
+    ]])
+
+			-- Additional configurations for Emmet in React files
+			vim.g.user_emmet_settings = {
+				javascript = {
+					extends = "jsx",
+				},
+				typescript = {
+					extends = "jsx",
+				},
+			}
+		end,
+	},
 }
