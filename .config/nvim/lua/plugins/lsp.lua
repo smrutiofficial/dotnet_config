@@ -7,6 +7,7 @@ return {
 				"luacheck",
 				"shellcheck",
 				"shfmt",
+				"emmet-language-server",
 				"tailwindcss-language-server",
 				"typescript-language-server",
 				"css-lsp",
