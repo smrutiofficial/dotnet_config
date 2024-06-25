@@ -1,37 +1,22 @@
+-- init.lua
+
+-- Enable the loader if it exists
 if vim.loader then
 	vim.loader.enable()
 end
 
+-- Define a global debug function
 _G.dd = function(...)
 	require("util.debug").dump(...)
 end
+
+-- Set vim.print to the global debug function
 vim.print = _G.dd
 
-require("config.lazy")
+-- Load options, keymaps, and other configurations
+require("config.options")
+require("config.keymaps")
+require("config.workflows")
 
--- init.lua or init.vim
-return require("lazy").setup({
-	{
-		"mattn/emmet-vim",
-		config = function()
-			vim.g.user_emmet_leader_key = "sk"
-			vim.g.user_emmet_mode = "a"
-		end,
-	},
-	{
-		"neovim/nvim-lspconfig",
-		config = function()
-			require("lspconfig").emmet_ls.setup({
-				filetypes = { "html", "css", "javascriptreact", "typescriptreact" },
-				init_options = {
-					html = {
-						options = {
-							["jsx.enabled"] = true,
-							["tsx.enabled"] = true,
-						},
-					},
-				},
-			})
-		end,
-	},
-})
+-- Load lazy plugin manager configuration
+require("config.lazy")

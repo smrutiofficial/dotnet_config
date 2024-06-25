@@ -20,20 +20,26 @@ keymap.set("n", "<Leader>f", ":NvimTreeFindFile<Return>", opts)
 keymap.set("n", "<Leader>n", ":NvimTreeToggle<Return>", opts)
 
 -- Tabs
-keymap.set("n", "te", ":tabedit")
-keymap.set("n", "<tab>", ":tabnext<Return>", opts)
-keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
-keymap.set("n", "tw", ":tabclose<Return>", opts)
+keymap.set("n", "te", ":tabedit<Return>", { silent = true })
+keymap.set("n", "<tab>", ":tabnext<Return>", { silent = true }, opts)
+keymap.set("n", "<s-tab>", ":tabprev<Return>", { silent = true }, opts)
+keymap.set("n", "tw", ":tabclose<Return>", { silent = true }, opts)
 
 -- Split window
 keymap.set("n", "ss", ":split<Return>", opts)
 keymap.set("n", "sv", ":vsplit<Return>", opts)
 keymap.set("n", "sx", "<cmd>close<CR>", opts)
+
 -- Move window
-keymap.set("n", "<Leader>sh", "<C-w>h")
+keymap.set("n", "<A-s>", "<C-w>w")
+keymap.set("n", "s<left>", "<C-w>h")
+keymap.set("n", "s<Up>", "<C-w>k")
+keymap.set("n", "s<Down>", "<C-w>j")
+keymap.set("n", "s<Right>", "<C-w>l")
+keymap.set("n", "sh", "<C-w>h")
 keymap.set("n", "sk", "<C-w>k")
 keymap.set("n", "sj", "<C-w>j")
-keymap.set("n", "<Leader>sl", "<C-w>l")
+keymap.set("n", "sl", "<C-w>l")
 
 -- Resize window
 keymap.set("n", "<C-S-h>", "<C-w><")
@@ -42,12 +48,28 @@ keymap.set("n", "<C-S-k>", "<C-w>+")
 keymap.set("n", "<C-S-j>", "<C-w>-")
 
 -- Custom keybindings
-keymap.set("i", "jk", "<ESC>", opts)
+keymap.set("i", "jk", "<ESC>:w<CR>", opts)
+keymap.set("x", "jk", "<ESC>:w<CR>", opts)
+--move cursor in normal mode
 keymap.set("n", "<Leader>l", "$", opts)
-keymap.set("n", "<Leader>h", "^", opts)
+keymap.set("n", "<Leader>h", "0", opts)
 keymap.set("n", "<Leader>k", "gg", opts)
 keymap.set("n", "<Leader>j", "G", opts)
+--remap visual key
 keymap.set("n", "<Leader>v", "v", opts)
+
+keymap.set("i", "<A-p>", "<ESC>p$i", opts)
+-- Comment
+keymap.set("n", "<leader>/", "gcc", { desc = "comment toggle", remap = true })
+keymap.set("v", "<leader>/", "gc", { desc = "comment toggle", remap = true })
+-- move cursor in insert mode
+-- keymap.set("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line", remap = true })
+-- keymap.set("i", "<C-e>", "<End>", { desc = "move end of line", remap = true })
+--
+keymap.set("i", "<A-h>", "<Left>", { desc = "move left", remap = true })
+keymap.set("i", "<A-l>", "<Right>", { desc = "move right", remap = true })
+keymap.set("i", "<A-j>", "<Down>", { desc = "move down", remap = true })
+keymap.set("i", "<A-k>", "<Up>", { desc = "move up", remap = true })
 
 -- New keybindings for moving selected lines up/down and repeatable until Esc
 keymap.set("x", "<C-k>", ":m '<-2<CR>gv=gv", opts) -- Move selected lines up

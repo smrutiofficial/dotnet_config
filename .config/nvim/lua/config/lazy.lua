@@ -32,6 +32,31 @@ require("lazy").setup({
 		{ import = "lazyvim.plugins.extras.coding.copilot" },
 		{ import = "lazyvim.plugins.extras.util.mini-hipatterns" },
 		{ import = "plugins" },
+		-- Emmet-vim plugin configuration
+		{
+			"mattn/emmet-vim",
+			config = function()
+				vim.g.user_emmet_leader_key = "sk"
+				vim.g.user_emmet_mode = "a"
+			end,
+		},
+		-- LSP configuration for Emmet
+		{
+			"neovim/nvim-lspconfig",
+			config = function()
+				require("lspconfig").emmet_ls.setup({
+					filetypes = { "html", "css", "javascriptreact", "typescriptreact" },
+					init_options = {
+						html = {
+							options = {
+								["jsx.enabled"] = true,
+								["tsx.enabled"] = true,
+							},
+						},
+					},
+				})
+			end,
+		},
 	},
 	defaults = {
 		lazy = false,
