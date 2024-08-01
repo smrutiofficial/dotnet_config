@@ -6,17 +6,17 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+# plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
+eval "$(starship init zsh)"
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 #alias code="flatpak run com.visualstudio.code"
-
 
 alias tms='session=$(tmux ls | fzf | awk -F: '\''{print $1}'\''); tmux attach -t "$session"'
 alias ll="ls -a"

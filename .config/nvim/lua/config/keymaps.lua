@@ -79,6 +79,7 @@ keymap.set("x", "<C-j>", ":m '>+1<CR>gv=gv", opts) -- Move selected lines down
 keymap.set("x", "<C-l>", '"my`>+1<CR>gv:put m<CR>gv', opts) -- Copy to m register and paste below the selection
 keymap.set("x", "<C-h>", '"my`< -1<CR>gv:put m<CR>gv', opts)
 
+keymap.set("x", "as", ':<C-u>s/\\%V\\(.*\\)/"\\1"<CR>')
 -- Navigate diagnostics
 keymap.set("n", "<C-j>", function()
 	vim.diagnostic.goto_next()
