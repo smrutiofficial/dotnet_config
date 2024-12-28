@@ -39,9 +39,6 @@ alias cl="clear"
 alias flapp="flatpak list --app --columns=name,application"
 alias flrm="flatpak remove"
 alias flcl="flatpak uninstall --unused"
-# alias fixdocker="sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0"
-
-
 
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 alias startemu="cd Android/Sdk/emulator && ./emulator -avd Pixel_3a_API_33_x86_64"
@@ -60,7 +57,16 @@ tmux source-file ~/.tmux.conf
 export GTK_THEME=Everforest-Dark-BL-MOD
 
 clear
-bash ~/print_start.sh
+echo ""
+figlet -w $(tput cols) -c -f kompaktblk "S.P.R.I" | lolcat
+#printf "%*s\n" $((($(tput cols) + 44) / 2)) "Smruti Prakash Replicated Intelligence" | lolcat
+#figlet -w $(tput cols) -c -f standard "Smruti Prakash Replicated Intelligence"| lolcat
+echo "$(printf '%*s' $(( ($(tput cols) + ${#TEXT}) / 2)) "Smruti Prakash Replicated Intelligence")" | lolcat
+echo " nala | ncdu | fzf | lsd"
+echo "Private IP:" $(hostname -I | awk '{print $1}') "|" "Public IP:" $(curl -4 -s ifconfig.me)
+
+
+
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
