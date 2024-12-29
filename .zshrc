@@ -35,6 +35,9 @@ alias gitpush="bash ~/gitpush.sh"
 alias gitset="bash ~/dev/bashscript/git_setup/gitset.sh"
 alias alclean="sudo apt autoclean && sudo apt autoremove"
 alias cl="clear"
+
+alias nim="flatpak run io.neovim.nvim"
+alias runjava='/usr/local/bin/runjava'
 # flatpak
 alias flapp="flatpak list --app --columns=name,application"
 alias flrm="flatpak remove"

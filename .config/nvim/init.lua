@@ -16,7 +16,6 @@ vim.print = _G.dd
 -- Load options, keymaps, and other configurations
 require("config.options")
 require("config.keymaps")
-require("config.workflows")
 
 -- Load lazy plugin manager configuration
 require("config.lazy")

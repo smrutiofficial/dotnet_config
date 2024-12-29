@@ -27,7 +27,7 @@ return {
 					show_curl_command = false,
 					show_http_info = true,
 					show_headers = true,
-					-- table of curl `--write-out` variables or false if disabled
+					-- table of curl --write-out variables or false if disabled
 					-- for more granular control see Statistics Spec
 					show_statistics = false,
 					-- executables or functions for formatting response body [optional]
