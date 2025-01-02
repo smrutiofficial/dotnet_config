@@ -87,3 +87,33 @@ keymap.set("x", "as", ':<C-u>s/\\%V\\(.*\\)/"\\1"<CR>')
 keymap.set("n", "<C-j>", function()
 	vim.diagnostic.goto_next()
 end, opts)
+
+-- -----------------------------  added a function that pop up java output -------------------------------------
+-- Add a popup terminal command keymap
+keymap.set("n", "J", function()
+  -- Execute the terminal command and capture its output
+  local output = vim.fn.system("runjava")
+
+  -- Display the output in a floating window
+  local buf = vim.api.nvim_create_buf(false, true) -- Create a scratch buffer
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(output, "\n")) -- Add output lines
+
+  -- Create a floating window
+  local width = math.floor(vim.o.columns * 0.8)
+  local height = math.floor(vim.o.lines * 0.6)
+  local opts = {
+    relative = "editor",
+    width = width,
+    height = height,
+    col = math.floor((vim.o.columns - width) / 2),
+    row = math.floor((vim.o.lines - height) / 2),
+    style = "minimal",
+    border = "rounded",
+  }
+  vim.api.nvim_open_win(buf, true, opts)
+
+  -- Make the floating window closable with `<ESC>`
+  vim.keymap.set("n", "<ESC>", function()
+    vim.api.nvim_win_close(0, true)
+  end, { buffer = buf })
+end, { desc = "Run 'runjava' and display output in popup", noremap = true, silent = true })
