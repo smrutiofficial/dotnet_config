@@ -21,6 +21,13 @@ local lsp_servers = {
       return require("lspconfig.util").root_pattern(".git")(...)
     end,
   },
+  -- tailwindcss = {
+  --   root_dir = function(fname)
+  --     return require("lspconfig.util").root_pattern(".git")(fname)
+  --   end,
+  --   filetypes = { "html", "css", "typescriptreact", "javascriptreact" },
+  -- },
+  
   -- TypeScript server configuration
   tsserver = {
     root_dir = function(...)

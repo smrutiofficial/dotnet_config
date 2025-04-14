@@ -54,8 +54,8 @@ keymap.set("n", "<C-S-j>", "<C-w>-")
 keymap.set("i", "jk", "<ESC>:w<CR>", opts)
 keymap.set("x", "jk", "<ESC>:w<CR>", opts)
 --move cursor in normal mode
-keymap.set("n", "<Leader>l", "$", opts)
-keymap.set("n", "<Leader>h", "0", opts)
+keymap.set("n", "ll", "$", opts)
+keymap.set("n", "hh", "0", opts)
 keymap.set("n", "<Leader>k", "gg", opts)
 keymap.set("n", "<Leader>j", "G", opts)
 --remap visual key
@@ -85,7 +85,7 @@ keymap.set("x", "<C-h>", '"my`< -1<CR>gv:put m<CR>gv', opts)
 keymap.set("x", "as", ':<C-u>s/\\%V\\(.*\\)/"\\1"<CR>')
 -- Navigate diagnostics
 keymap.set("n", "<C-j>", function()
-	vim.diagnostic.goto_next()
+  vim.diagnostic.goto_next()
 end, opts)
 
 -- -----------------------------  added a function that pop up java output -------------------------------------
